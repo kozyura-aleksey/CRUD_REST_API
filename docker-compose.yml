@@ -1,0 +1,33 @@
+version: '3.0'
+
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      PSQL_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: crud_rest_api
+      DATABASE_URL: postgres://postgres:admin@localhost:5432/crud_rest_api
+      NODE_ENV: development
+      PORT: 7500
+    ports:
+      - "7500:7500"
+    command: npm run dev
+    volumes:
+      - .:/app/
+      - /app/node_modules
+
+  postgres:
+    image: postgres:10.4
+    ports:
+      - "3000:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: crud_rest_api
+
+volumes:
+  postgres:
