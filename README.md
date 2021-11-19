@@ -7,4 +7,3 @@ Docker:
 
 docker-compose up
 
-test data - tags.txt и users.txt
